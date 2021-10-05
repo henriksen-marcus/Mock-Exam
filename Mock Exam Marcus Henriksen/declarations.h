@@ -10,6 +10,7 @@ void runTasks(int);
 void task2();
 void task3();
 void getInfo();
+void task4();
 
 const std::string correctAnswer = "ABDCABDA";
 

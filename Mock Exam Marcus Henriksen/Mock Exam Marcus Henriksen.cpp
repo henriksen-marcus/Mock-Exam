@@ -100,8 +100,7 @@ void runTasks(int task) {
 		task3();
 		break;
 	case 3:
-		std::cout << "This task is not complete." << std::endl;
-		system("pause");
+		task4();
 		break;
 	case 4:
 		exit(0);
@@ -164,7 +163,7 @@ void task3() {
 
 	std::cout << std::endl;
 
-	int average{};
+	double average{};
 	int min = students[0].grade();
 	int max = students[0].grade();
 
@@ -173,7 +172,7 @@ void task3() {
 		if (students[j].grade() < min) {
 			min = students[j].grade();
 		}
-		if (students[j].grade() < max) {
+		if (students[j].grade() > max) {
 			max = students[j].grade();
 		}
 	}
@@ -204,4 +203,91 @@ void getInfo() {
 	person.answers = answer;
 
 	students.push_back(person);
+}
+
+void task4() {
+	int ans{};
+	int pos{};
+	int ypos{};
+
+	std::vector <char> arr{};
+	std::vector <char> chars = { ' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'N', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z' };
+
+	std::cout << "Enter how many characters you sentence needs: ";
+	std::cin >> ans;
+
+	for (int i{}; i < ans; i++) {
+		arr.push_back(' ');
+	}
+
+	while (true) {
+		system("cls");
+		for (int k{}; k < arr.size(); k++) {
+			if (pos == k) {
+				std::cout << "[ " << arr[k] << "* ]  ";
+			}
+			else {
+				std::cout << "[ " << arr[k] << " ]  ";
+			}
+		}
+
+		char ch{};
+		ch = _getch();
+		switch (ch) {
+		case 'A':
+		case 'a':
+			ypos = 0;
+			if (pos <= 0) {
+				pos = arr.size() - 1;
+			}
+			else {
+				pos--;
+			}
+			break;
+		case 'D':
+		case 'd':
+			ypos = 0;
+			if (pos >= arr.size() - 1) {
+				pos = 0;
+			}
+			else {
+				pos++;
+			}
+			break;
+		case 'W':
+		case 'w':
+			if (ypos <= 0) {
+				ypos = chars.size() - 1;
+			}
+			else {
+				ypos--;
+			}
+			arr[pos] = chars[ypos];
+			break;
+		case 'S':
+		case 's':
+			if (ypos >= chars.size() - 1) {
+				ypos = 0;
+			}
+			else {
+				ypos++;
+			}
+			arr[pos] = chars[ypos];
+			break;
+		case 13:
+			system("cls");
+			std::cout << "Here is your sentence: " << std::endl;
+			for (int j{}; j < arr.size(); j++) {
+				std::cout << arr[j];
+			}
+			std::cout << std::endl;
+			system("pause");
+			return;
+			break;
+		default:
+			std::cout << "Please enter a valid input." << std::endl;
+			system("pause");
+			break;
+		}
+	}
 }
